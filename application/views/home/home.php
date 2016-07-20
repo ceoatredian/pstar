@@ -368,7 +368,7 @@
 					$num=0;
 					if($results==NULL){ echo "<p class='no_add_error_home'><b>No Adds Found For</b> "; if($loc!=NULL){ echo "<b>".$loc."</b>"; }else{ echo "<b>".$city."</b>"; } echo "<b> Location. Please Check Nearby Location.</b></p>";}
 					foreach ($results as $key => $value) {  $num++; ?>					
-						  <div class="col-md-4 box-resp box-resp-search" style=" padding-right:15px;">
+						  <div class="col-md-4 box-resp box-resp-search">
 							<div class="row">
 								<div class="adds-media pull-left col-sm-4">
 									<?php if($value->profile_pic!=''){ ?>
@@ -412,15 +412,8 @@
 	<div class="section-show-more-wrap">
 		<div class="container">
 			<div class="center" id="show_more_main1" >
-				<div class="isa_error" id="adderror" style="display:none;'"><img src="<?php echo base_url();?>assets/images/ajax-loader.gif" alt="loader"></div>
-				<?php if(isset($results)){ if(COUNT($results)<24){?>
-				<span  class="Show-More-ads" >
-                <button disabled='disabled' class="btn btn_showmore_home" id="btn"> Show More ads </button>   
-                </span>
-				<?php }else{?>
-				<span  class="Show-More-ads" ><a class="btn" id="btn"> Show More ads </a></span>
-				<?php } }?>
-				<span class="or-show-map"> or <a class="btn">Show Ads on the Map </a> </span>
+				<a href="<?php echo BASE_URL; ?>home/search" class="btn btn_showmore_home" id="btn"> Show More ads </a> 
+            	<span class="or-show-map"> or <a class="btn">Show Ads on the Map </a> </span>
 				<span class="or-show-ads" style="display:none;"> or <a class="btn">Show Ads on the Grid </a> </span>
 			</div>
             	<script type="text/javascript">
