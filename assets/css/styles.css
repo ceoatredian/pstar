@@ -3347,8 +3347,7 @@ font-size:16px;
 	.howitwork-header .item-border{border-bottom: 2px solid #ccc;
 	padding-bottom: 2%;}
 	.howitwork-header .item{ margin-top:2%;}  
-	.btn_showmore_home{pointer-events: none;
-    cursor: not-allowed;
+	.btn_showmore_home{
     border: 1px #c52d2f solid;
    
     -moz-border-radius: 0;
