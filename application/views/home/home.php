@@ -1,3 +1,5 @@
+
+
 <?php $this->load->view('common/header'); ?>
 
 <div class='result'></div>
@@ -153,11 +155,68 @@
 									</div>										
 								</div>
 								<div class="col-sm-12-sm col-sm-12 advanced-search-bg">
-									<div class="search-inner">
-									 
-										<input type="text" class="search-input advanced-search-input" name="location"  autocomplete="off" placeholder="Location">  
-										<span class="advanced-toggle" id="serach-toggle2"> <i class="fa fa-angle-down"></i></span>
+									<div class="col-sm-4 col-sm-4 ">
+										<div class="search-inner">
+										    
+											<select class="search-input advanced-search-input" name="country" id="country"  autocomplete="off" >
+											<option value="">Country</option>
+											<?php foreach($country as $row){ ?>
+											<option value="<?php echo $row['country_code']; ?>"><?php echo $row['country']; ?></option>
+											<?php } ?>
+											</select>
+											<span class="advanced-toggle1" id="serach-toggle1"> <i class="fa fa-angle-down fa2"></i></span> 
+										</div>
 									</div>
+									
+									<div class="col-sm-4 col-sm-4 ">
+										<div class="search-inner">
+											<!--<input type="text" class="search-input advanced-search-input" name="location"  autocomplete="off" placeholder="Location">				
+											<span class="advanced-toggle" id="serach-toggle2"> <i class="fa fa-angle-down"></i></span>-->
+											<select class="search-input advanced-search-input" name="state" id="state"  autocomplete="off" >
+												<option value="">Select Country</option>
+											</select>
+											<span class="advanced-toggle1" id="serach-toggle1"> <i class="fa fa-angle-down fa2"></i></span> 
+										</div>
+									</div>
+									
+									<script type="text/javascript">
+										$('#country').change(function()
+										{
+											var site_url="<?php echo base_url(); ?>";
+											var value=$(this).val();
+											$.ajax({
+												type:"GET",
+												url:site_url+"home/getState/"+value,
+												success:function(response){
+													$("#state").html(response);
+												}
+											});
+										});
+										
+										$('#state').change(function()
+										{
+											var site_url="<?php echo base_url(); ?>";
+											var value=$(this).val();
+											$.ajax({
+												type:"GET",
+												url:site_url+"home/getCity/"+value,
+												success:function(response){
+													$("#city").html(response);
+												}
+											});
+										});
+									</script>
+
+									<div class="col-sm-4 col-sm-4 ">
+										<div class="search-inner">
+											<!--<input type="text" class="search-input advanced-search-input" name="location"  autocomplete="off" placeholder="Location">  
+											<span class="advanced-toggle" id="serach-toggle2"> <i class="fa fa-angle-down"></i></span>-->
+											<select class="search-input advanced-search-input" name="city" id="city"  autocomplete="off" >
+												<option value="">Select State</option>
+											</select>
+											<span class="advanced-toggle1" id="serach-toggle1"> <i class="fa fa-angle-down fa2"></i></span> 
+										</div>
+									</div>									
 								</div>
 								<div class="col-sm-12-sm col-sm-12 advanced-search-bg advanced-search-bg-last">      
 									<div class="search-inner">

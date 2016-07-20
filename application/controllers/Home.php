@@ -96,6 +96,8 @@ class Home extends CI_Controller {
 		$this->googlemaps->initialize($config);
 		@$data['map']	=	$this->googlemaps->create_map();
 		$data["links"] = $this->pagination->create_links();
+		$this->load->model('location_model');
+		$data['country']=$this->location_model->getCountry();
 		$this->load->view('home/home', $data);
 	}
 	
@@ -355,5 +357,26 @@ class Home extends CI_Controller {
 		}
 		$data['errormsg'] = $error; 
 		$this->load->view('home/subcribe_verified.php', $data); 
-	}	
+	}
+	
+	public function getState()
+	{
+		$country_code=$this->uri->segment(3);
+		$this->load->model('Location_model');
+		$result=$this->Location_model->getState($country_code);
+		foreach($result as $row)
+		{
+			echo "<option value='".$row['abbrevation']."'>".$row['state']."</option>";
+		}
+	}
+	public function getCity()
+	{
+		$state_code=$this->uri->segment(3);
+		$this->load->model('Location_model');
+		$result=$this->Location_model->getCity($state_code);
+		foreach($result as $row)
+		{
+			echo "<option value='".$row['city']."'>".$row['city']."</option>";
+		}
+	}
 }
